@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Debt Timeline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <img src="images/Unplugged.png" alt="Unplugged Logo" class="logo-fixed logo-left">
+    <img src="images/NHS.svg" alt="NHS Logo" class="logo-fixed logo-right">
+
+    <div class="sky-elements"> 
+        <img src="https://i.postimg.cc/wMBdzVVp/clouds.png" class="cloud cloud1"> 
+        <img src="https://i.postimg.cc/wMBdzVVp/clouds.png" class="cloud cloud2"> 
+        <img src="https://i.postimg.cc/wMBdzVVp/clouds.png" class="cloud cloud3"> 
+        <img src="https://i.postimg.cc/BvvyX6FF/moon.png" class="moon" id="moon"> 
+    </div> 
+
+    <div id="timeline"> 
+        
+        <div class="intro-header">
+            <h1>Introduction — Reduced Sleep + High Screen Time</h1>
+            <p>Over one month, chronic sleep reduction paired with high screen exposure causes drops in focus, mood, and energy.</p>
+        </div>
+
+        <div class="header-connector"></div>
+
+        <div class="timeline-spacer"></div>
+
+        <div class="vertical-line" id="vertical-line"></div> 
+        
+        <div class="face-container" id="face-wrapper"> 
+            <img id="face-image" src="https://i.ibb.co/tTcMH8yQ/week-1-final.png" alt="Face State"> 
+        </div> 
+
+        <section class="panel" data-face="https://i.ibb.co/tTcMH8yQ/week-1-final.png">
+            <div class="content right">
+                <div class="connector-line"></div>
+                <h1>Week 1 — Awareness and Initial Effects</h1>
+                <p>During the first week, children may feel more tired during the day, with lower energy and motivation. Mood can become irritable or easily triggered by minor stressors.</p>
+            </div>
+        </section>
+
+        <section class="panel" data-face="https://i.ibb.co/wNHBvk4T/week-2.png">
+            <div class="content left">
+                <div class="connector-line"></div>
+                <h1>Week 2 — Sleep Debt Builds</h1>
+                <p>By the second week, concentration declines further and memory slip-ups increase. Anxiety levels may rise, and mood swings become more noticeable.</p>
+            </div>
+        </section>
+
+        <section class="panel" data-face="https://i.ibb.co/5WMhz5cr/dan-week-8-face.png">
+            <div class="content right">
+                <div class="connector-line"></div>
+                <h1>Week 3 — Habit Loop Forms</h1>
+                <p>In week three, mental fatigue strengthens, making it harder to focus. Learning slows and emotions are more difficult to regulate.</p>
+            </div>
+        </section>
+
+        <section class="panel" data-face="https://i.ibb.co/q3P5Z4PB/fianl-week-lily.png">
+            <div class="content left">
+                <div class="connector-line"></div>
+                <h1>Week 4 — Long-Term Strain</h1>
+                <p>By week four, problem-solving ability may decline and low mood can persist. Signs of burnout and prolonged fatigue may appear.</p>
+            </div>
+        </section>
+
+        <section class="panel summary-panel" id="summary-panel">
+            <div class="content full-width-bottom">
+                <h1>The Month in Summary</h1>
+                <p>Sleep debt affects thinking, mood and energy. High screen time keeps the brain alert when it should be winding down.</p>
+            </div>
+        </section>
+
+    </div> 
+    
+    <div class="faq-section">
+        <div class="faq">
+            <div class="faq-header">How to Recover Sleep <span class="arrow">&#9654;</span></div>
+            <div class="faq-content">
+                <p>Focus on consistent bedtimes, reduce screen exposure at night, and allow 7–9 hours of sleep.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="faq-header">Effects of Sleep Debt <span class="arrow">&#9654;</span></div>
+            <div class="faq-content">
+                <p>Chronic sleep loss increases risk of cardiovascular disease, weakens immunity, and heightens stress.</p>
+            </div>
+        </div>
+        <div class="faq">
+            <div class="faq-header">Tips for Reducing Screen Time <span class="arrow">&#9654;</span></div>
+            <div class="faq-content">
+                <p>Set device-free hours, use night mode, schedule breaks, and replace evening screen time with relaxing activities.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
