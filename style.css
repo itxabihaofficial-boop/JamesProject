@@ -19,7 +19,6 @@ body {
 .logo-left { left: 40px; }
 .logo-right { right: 40px; }
 
-
 /* --- INTRO HEADER --- */
 .intro-header {
     position: relative;
@@ -34,14 +33,8 @@ body {
     text-align: center;
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    z-index: 20;
-}
-
-.header-connector {
-    width: 2px;
-    height: 50px; 
-    background: #ffffff55;
-    margin: 0 auto; 
+    /* Sits above the vertical line */
+    z-index: 20; 
 }
 
 /* --- SPACER --- */
@@ -50,16 +43,18 @@ body {
     width: 100%;
 }
 
-/* --- VERTICAL LINE --- */
+/* --- MAIN VERTICAL LINE (FULL) --- */
 .vertical-line {
     position: fixed;
-    top: 350px; 
+    /* Starts at the very top */
+    top: 0; 
     left: 50%;
     width: 6px;
     height: 100%;
     background: #ffffff55;
     transform: translateX(-50%);
-    z-index: 10; /* Higher index than connector line so it sits on top */
+    /* Sits behind text (20) and face (30) */
+    z-index: 10; 
 }
 
 /* --- SKY ELEMENTS --- */
@@ -84,19 +79,18 @@ body {
     width: 250px;
     height: 250px;
     object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #fff; 
-    opacity: 0; /* Hidden by default */
+    opacity: 0; 
     transform: scale(0.8);
     transition: opacity 0.5s ease, transform 0.5s ease, content 0.3s;
 }
 
+/* Class triggered by JS */
 .face-container.visible #face-image {
     opacity: 1;
     transform: scale(1);
 }
 
-/* --- TIMELINE PANELS --- */
+/* --- PANELS --- */
 .panel {
     min-height: 80vh;
     display: flex;
@@ -119,17 +113,17 @@ body {
     z-index: 20;
     border: 1px solid #ffffff33; 
     
-    /* Fade in effect */
+    /* Slight fade for entry */
     opacity: 0.3;
     transition: opacity 0.5s ease;
 }
 
-/* Highlight content when active */
+/* Highlight box when active */
 .panel.active .content {
     opacity: 1;
 }
 
-/* --- POSITIONING --- */
+/* --- BOX POSITIONS --- */
 .content.left { margin-right: 55%; margin-left: auto; }
 .content.right { margin-left: 55%; margin-right: auto; }
 .content.full-width-bottom { width: 80%; max-width: 900px; margin: 0 auto; text-align: center; }
@@ -137,35 +131,35 @@ body {
 h1 { margin: 0 0 12px; font-size: 2rem; font-weight: 900; }
 p { font-size: 1.2rem; line-height: 1.5; }
 
-/* --- CONNECTOR LINES (Animation Logic) --- */
+/* --- ANIMATED CONNECTOR LINES --- */
 .connector-line {
     position: absolute;
     top: 50%;
     height: 2px;
     background: #ffffff;
-    z-index: 9; /* Sits UNDER the vertical line (index 10) */
+    z-index: 9; /* Sits just under the vertical line */
     
-    /* Gap Calculation: 55% (margin) - 50% (center) = 5% gap */
-    width: 5vw; 
+    /* Span the 5% gap exactly */
+    width: 5.5vw; 
     
-    /* Animation Defaults */
-    transform: scaleX(0); /* Hidden */
-    transition: transform 0.6s ease-out; /* Smooth growth */
+    /* Animation: Start with 0 width */
+    transform: scaleX(0); 
+    transition: transform 0.6s ease-out; 
 }
 
-/* Right Box: Line is on Left side. Grows from Left (center) to Right. */
+/* If box is on Right, line grows from Left (center) */
 .content.right .connector-line {
     left: -5vw; 
     transform-origin: left; 
 }
 
-/* Left Box: Line is on Right side. Grows from Right (center) to Left. */
+/* If box is on Left, line grows from Right (center) */
 .content.left .connector-line {
     right: -5vw; 
     transform-origin: right; 
 }
 
-/* TRIGGER: When panel has .active class, expand the line */
+/* JS adds .active to panel -> Line expands */
 .panel.active .connector-line {
     transform: scaleX(1);
 }
@@ -175,17 +169,21 @@ p { font-size: 1.2rem; line-height: 1.5; }
 .faq { width: 100%; border: 1px solid #ffffff55; border-radius: 15px; margin-bottom: 25px; background: #1c1c1c; color: #fff; overflow: hidden; }
 .faq-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; cursor: pointer; font-weight: 700; font-size: 1.3rem; }
 .faq-content { max-height: 0; overflow: hidden; padding: 0 30px; transition: all 0.4s ease; }
-.faq-content p { margin: 20px 0; line-height: 1.6; }
 .faq.active .faq-content { max-height: 300px; padding-bottom: 20px; }
 
 /* --- MOBILE --- */
 @media screen and (max-width:768px) {
     .intro-header { width: 90%; margin-top: 100px; padding: 20px; }
     .timeline-spacer { height: 150px; }
-    .vertical-line { top: 300px; } 
+    
+    /* Keep line full height on mobile */
+    .vertical-line { top: 0; } 
+    
     .content.left, .content.right { margin: 0 auto; width: 85%; max-width: 85%; text-align: center; }
+    
     /* Hide connectors on mobile */
     .connector-line { display: none; } 
+    
     #face-image { width: 180px; height: 180px; }
     .logo-fixed { height: 40px; top: 20px; }
     .logo-left { left: 20px; }

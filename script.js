@@ -11,30 +11,30 @@ window.addEventListener("scroll", () => {
     const viewportHeight = window.innerHeight;
 
     // --- 0. FACE VISIBILITY ---
+    // Hide face at top so it doesn't block Intro. Show after 100px scroll.
     if (scrollY > 100) {
         faceWrapper.classList.add("visible");
     } else {
         faceWrapper.classList.remove("visible");
     }
 
-    // --- 1. ACTIVE PANEL DETECTION (Triggers Animation) ---
+    // --- 1. ACTIVE PANEL DETECTION ---
     panels.forEach(panel => {
         const rect = panel.getBoundingClientRect();
         
-        // Define an "Active Zone" in the middle of the screen
-        // If the panel enters this zone, we trigger the line animation
+        // "Active Zone": If panel is in the middle 40% of the screen
         if (rect.top < viewportHeight * 0.7 && rect.bottom > viewportHeight * 0.3) {
             
-            // Add .active class -> CSS triggers line animation
+            // This triggers the CSS connector line animation
             panel.classList.add("active");
 
-            // Swap Face Image
+            // Change Face Image
             const newFace = panel.getAttribute("data-face");
             if (newFace && faceImage.src !== newFace) {
                 faceImage.src = newFace;
             }
         } else {
-            // Remove class when scrolling away (Optional: remove this else block if you want lines to stay once shown)
+            // Remove active class when scrolling away (connector shrinks back)
             panel.classList.remove("active");
         }
     });
@@ -46,17 +46,24 @@ window.addEventListener("scroll", () => {
         cloud.style.opacity = scrollY > maxScroll * 0.45 ? 0 : 0.6;
     });
 
-    // --- 3. STOP FACE AT SUMMARY ---
+    // --- 3. STOP LOGIC AT BOTTOM ---
     const summaryBottom = summaryPanel.offsetTop + summaryPanel.offsetHeight;
     const faceHalf = faceWrapper.offsetHeight / 2;
 
     if (scrollY + faceHalf > summaryBottom) {
+        // Stop Face
         faceWrapper.style.position = "absolute";
         faceWrapper.style.top = (summaryBottom - faceHalf) + "px";
-        verticalLine.style.height = (summaryBottom - 350) + "px"; 
+        
+        // Stop Vertical Line
+        // Since top is 0, height = distance to bottom of summary
+        verticalLine.style.height = summaryBottom + "px"; 
     } else {
+        // Sticky Face
         faceWrapper.style.position = "fixed";
         faceWrapper.style.top = "50%";
+        
+        // Full Fixed Line
         verticalLine.style.height = "100%";
     }
 });
