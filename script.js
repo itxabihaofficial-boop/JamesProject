@@ -9,6 +9,9 @@ const summaryPanel = document.getElementById("summary-panel");
 window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
+    
+    // Calculate the exact center of the current view
+    const centerOfView = scrollY + (viewportHeight / 2);
 
     // --- 0. FACE VISIBILITY ---
     // Hide face at top so it doesn't block Intro. Show after 100px scroll.
@@ -21,20 +24,14 @@ window.addEventListener("scroll", () => {
     // --- 1. ACTIVE PANEL DETECTION ---
     panels.forEach(panel => {
         const rect = panel.getBoundingClientRect();
-        
-        // "Active Zone": If panel is in the middle 40% of the screen
+        // Active Zone: Middle 40% of screen
         if (rect.top < viewportHeight * 0.7 && rect.bottom > viewportHeight * 0.3) {
-            
-            // This triggers the CSS connector line animation
             panel.classList.add("active");
-
-            // Change Face Image
             const newFace = panel.getAttribute("data-face");
             if (newFace && faceImage.src !== newFace) {
                 faceImage.src = newFace;
             }
         } else {
-            // Remove active class when scrolling away (connector shrinks back)
             panel.classList.remove("active");
         }
     });
@@ -46,29 +43,39 @@ window.addEventListener("scroll", () => {
         cloud.style.opacity = scrollY > maxScroll * 0.45 ? 0 : 0.6;
     });
 
-    // --- 3. STOP LOGIC AT BOTTOM ---
-    const summaryBottom = summaryPanel.offsetTop + summaryPanel.offsetHeight;
-    const faceHalf = faceWrapper.offsetHeight / 2;
+    // --- 3. STOP LOGIC AT SUMMARY ---
+    // We get the absolute position of the bottom of the summary panel
+    const summaryRect = summaryPanel.getBoundingClientRect();
+    const summaryBottomAbsolute = summaryRect.bottom + scrollY;
+    
+    // Determine the stop point: Bottom of summary minus half the face height
+    // This makes the face "sit" at the end of the summary section
+    const faceHeight = faceWrapper.offsetHeight;
+    const stopPoint = summaryBottomAbsolute - (faceHeight / 2);
 
-    if (scrollY + faceHalf > summaryBottom) {
-        // Stop Face
-        faceWrapper.style.position = "absolute";
-        faceWrapper.style.top = (summaryBottom - faceHalf) + "px";
+    if (centerOfView >= stopPoint) {
+        // --- LOCKED STATE (End of Timeline) ---
         
-        // Stop Vertical Line
-        // Since top is 0, height = distance to bottom of summary
-        verticalLine.style.height = summaryBottom + "px"; 
+        // 1. Position Face Absolutely at the stop point
+        faceWrapper.style.position = "absolute";
+        faceWrapper.style.top = stopPoint + "px";
+        
+        // 2. Cut off the Vertical Line
+        // The line should end exactly where the center of the face is
+        verticalLine.style.height = stopPoint + "px"; 
     } else {
-        // Sticky Face
+        // --- SCROLLING STATE ---
+        
+        // 1. Face is Fixed in Center
         faceWrapper.style.position = "fixed";
         faceWrapper.style.top = "50%";
         
-        // Full Fixed Line
+        // 2. Vertical Line spans full height
         verticalLine.style.height = "100%";
     }
 });
 
-// FAQ Accordion
+// FAQ Accordion Logic
 document.querySelectorAll(".faq-header").forEach(header => {
     header.addEventListener("click", () => {
         header.parentElement.classList.toggle("active");
