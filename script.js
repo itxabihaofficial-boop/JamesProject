@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const faceImage = document.getElementById("face-image");
 const panels = document.querySelectorAll(".panel");
 const moon = document.getElementById("moon");
@@ -67,77 +66,4 @@ document.querySelectorAll(".faq-header").forEach(header => {
     header.addEventListener("click", () => {
         header.parentElement.classList.toggle("active");
     });
-=======
-const faceImage = document.getElementById("face-image");
-const panels = document.querySelectorAll(".panel");
-const moon = document.getElementById("moon");
-const clouds = document.querySelectorAll(".cloud");
-const faceWrapper = document.getElementById("face-wrapper");
-const verticalLine = document.getElementById("vertical-line");
-const summaryPanel = document.getElementById("summary-panel");
-
-window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-
-    // --- 0. FACE VISIBILITY ---
-    if (scrollY > 100) {
-        faceWrapper.classList.add("visible");
-    } else {
-        faceWrapper.classList.remove("visible");
-    }
-
-    // --- 1. ACTIVE PANEL (Trigger Horizontal Lines) ---
-    panels.forEach(panel => {
-        const rect = panel.getBoundingClientRect();
-        
-        // Active zone: Center of screen
-        if (rect.top < viewportHeight * 0.7 && rect.bottom > viewportHeight * 0.3) {
-            panel.classList.add("active");
-            
-            // Swap Face
-            const newFace = panel.getAttribute("data-face");
-            if (newFace && faceImage.src !== newFace) {
-                faceImage.src = newFace;
-            }
-        } else {
-            panel.classList.remove("active");
-        }
-    });
-
-    // --- 2. BACKGROUND ANIMATION ---
-    const maxScroll = document.body.scrollHeight - viewportHeight;
-    moon.style.opacity = scrollY > maxScroll * 0.45 ? 1 : 0;
-    clouds.forEach(cloud => {
-        cloud.style.opacity = scrollY > maxScroll * 0.45 ? 0 : 0.6;
-    });
-
-    // --- 3. STOP FACE AND LINE AT SUMMARY ---
-    const summaryBottom = summaryPanel.offsetTop + summaryPanel.offsetHeight;
-    const faceHalf = faceWrapper.offsetHeight / 2;
-
-    if (scrollY + faceHalf > summaryBottom) {
-        // Stop the Face
-        faceWrapper.style.position = "absolute";
-        faceWrapper.style.top = (summaryBottom - faceHalf) + "px";
-        
-        // Stop the Line
-        // Since top is now 0, the height equals the summary position
-        verticalLine.style.height = summaryBottom + "px"; 
-    } else {
-        // Face is Sticky
-        faceWrapper.style.position = "fixed";
-        faceWrapper.style.top = "50%";
-        
-        // Line is Full Screen Fixed
-        verticalLine.style.height = "100%";
-    }
-});
-
-// FAQ Accordion
-document.querySelectorAll(".faq-header").forEach(header => {
-    header.addEventListener("click", () => {
-        header.parentElement.classList.toggle("active");
-    });
->>>>>>> 1c3c959 (Made vertical Line canges)
 });

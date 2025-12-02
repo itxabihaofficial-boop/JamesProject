@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* --- GLOBAL --- */
 body {
     margin: 0;
@@ -85,6 +84,8 @@ body {
     width: 250px;
     height: 250px;
     object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff; 
     opacity: 0; /* Hidden by default */
     transform: scale(0.8);
     transition: opacity 0.5s ease, transform 0.5s ease, content 0.3s;
@@ -189,160 +190,4 @@ p { font-size: 1.2rem; line-height: 1.5; }
     .logo-fixed { height: 40px; top: 20px; }
     .logo-left { left: 20px; }
     .logo-right { right: 20px; }
-=======
-/* --- GLOBAL --- */
-body {
-    margin: 0;
-    font-family: "Nunito", sans-serif;
-    overflow-x: hidden;
-    background: linear-gradient(to bottom, #71c8ff 0%, #4aa3e8 25%, #1c56a2 50%, #1e3a66 75%, #0c1f3d 100%);
-    transition: background 1s linear;
-}
-
-/* --- LOGOS --- */
-.logo-fixed {
-    position: fixed;
-    top: 30px;
-    z-index: 100;
-    height: 60px;
-    width: auto;
-    filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
-}
-.logo-left { left: 40px; }
-.logo-right { right: 40px; }
-
-/* --- HEADER --- */
-.intro-header {
-    position: relative;
-    width: 80%; 
-    max-width: 900px;
-    margin: 100px auto 0 auto; 
-    background: rgba(0, 0, 0, 0.4);
-    padding: 40px;
-    border-radius: 15px;
-    border: 2px solid #ffffff55;
-    color: white;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    /* Z-index 20 puts it ON TOP of the vertical line (index 10) */
-    z-index: 20; 
-}
-
-.timeline-spacer {
-    height: 300px;
-    width: 100%;
-}
-
-/* --- VERTICAL LINE (Now Full Height) --- */
-.vertical-line {
-    position: fixed;
-    /* CHANGED: Starts at 0 (top of screen) instead of 350px */
-    top: 0; 
-    left: 50%;
-    width: 6px;
-    height: 100%;
-    background: #ffffff55;
-    transform: translateX(-50%);
-    /* Z-index 10 puts it BEHIND the face (30) and BEHIND the Intro (20) */
-    z-index: 10; 
-}
-
-/* --- SKY --- */
-.sky-elements { pointer-events: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-.cloud { position: absolute; opacity: 0.6; width: 300px; transition: all 1s linear; }
-.cloud1 { top: 15%; left: 5%; }
-.cloud2 { top: 25%; left: 35%; }
-.cloud3 { top: 20%; left: 65%; }
-.moon { position: absolute; width: 180px; top: 5%; right: 5%; opacity: 0; z-index: 0; transition: opacity 0.8s ease; }
-
-/* --- FACE --- */
-.face-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 30;
-    transition: top 0.1s; 
-}
-#face-image {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #fff; 
-    opacity: 0; 
-    transform: scale(0.8);
-    transition: opacity 0.5s ease, transform 0.5s ease, content 0.3s;
-}
-.face-container.visible #face-image { opacity: 1; transform: scale(1); }
-
-/* --- PANELS --- */
-.panel {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 30px 0;
-    width: 100%;
-}
-.content {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 30px 40px;
-    border-radius: 22px;
-    backdrop-filter: blur(12px);
-    width: 40%;
-    max-width: 450px;
-    color: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
-    position: relative;
-    z-index: 20;
-    border: 1px solid #ffffff33; 
-    opacity: 0.3;
-    transition: opacity 0.5s ease;
-}
-.panel.active .content { opacity: 1; }
-
-.content.left { margin-right: 55%; margin-left: auto; }
-.content.right { margin-left: 55%; margin-right: auto; }
-.content.full-width-bottom { width: 80%; max-width: 900px; margin: 0 auto; text-align: center; }
-
-h1 { margin: 0 0 12px; font-size: 2rem; font-weight: 900; }
-p { font-size: 1.2rem; line-height: 1.5; }
-
-/* --- CONNECTOR LINES --- */
-.connector-line {
-    position: absolute;
-    top: 50%;
-    height: 2px;
-    background: #ffffff;
-    z-index: 9; 
-    width: 5.5vw; 
-    transform: scaleX(0); 
-    transition: transform 0.6s ease-out; 
-}
-.content.right .connector-line { left: -5.5vw; transform-origin: left; }
-.content.left .connector-line { right: -5.5vw; transform-origin: right; }
-.panel.active .connector-line { transform: scaleX(1); }
-
-/* --- FAQ --- */
-.faq-section { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; max-width: 600px; margin: 0 auto; z-index: 50; position: relative; }
-.faq { width: 100%; border: 1px solid #ffffff55; border-radius: 15px; margin-bottom: 25px; background: #1c1c1c; color: #fff; overflow: hidden; }
-.faq-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; cursor: pointer; font-weight: 700; font-size: 1.3rem; }
-.faq-content { max-height: 0; overflow: hidden; padding: 0 30px; transition: all 0.4s ease; }
-.faq.active .faq-content { max-height: 300px; padding-bottom: 20px; }
-
-/* --- MOBILE --- */
-@media screen and (max-width:768px) {
-    .intro-header { width: 90%; margin-top: 100px; padding: 20px; }
-    .timeline-spacer { height: 150px; }
-    /* Ensure line is visible full height on mobile too */
-    .vertical-line { top: 0; } 
-    .content.left, .content.right { margin: 0 auto; width: 85%; max-width: 85%; text-align: center; }
-    .connector-line { display: none; } 
-    #face-image { width: 180px; height: 180px; }
-    .logo-fixed { height: 40px; top: 20px; }
-    .logo-left { left: 20px; }
-    .logo-right { right: 20px; }
->>>>>>> 1c3c959 (Made vertical Line canges)
 }
