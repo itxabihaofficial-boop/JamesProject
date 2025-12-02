@@ -15,7 +15,7 @@ window.addEventListener("scroll", () => {
 
     // --- 0. FACE VISIBILITY ---
     // Hide face at top so it doesn't block Intro. Show after 100px scroll.
-    if (scrollY > 100) {
+    if (scrollY > 400) {
         faceWrapper.classList.add("visible");
     } else {
         faceWrapper.classList.remove("visible");
