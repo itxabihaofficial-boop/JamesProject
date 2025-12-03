@@ -9,7 +9,7 @@ body {
 
 /* --- LOGOS --- */
 .logo-fixed {
-    position: fixed;
+    position: absolute; /* Changed from fixed to absolute so they stay at the top */
     top: 30px;
     z-index: 100;
     height: 70px;
@@ -254,6 +254,40 @@ p { font-size: 1.2rem; line-height: 1.5; }
 }
 
 
+
+
+
+/* --- STORE BUTTONS --- */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%; /* Matches FAQ width */
+    margin-top: 40px;
+}
+
+.store-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1; /* Makes them equal width */
+    background: #1c1c1c;
+    border: 1px solid #ffffff55;
+    padding: 15px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.store-btn img {
+    height: 50px; /* Standardize badge height */
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    flex: 1; /* Makes them equal width */
+}
+
+
+
 /* --- DOWNLOAD BUTTON --- */
 .download-btn {
     display: block;
@@ -287,6 +321,7 @@ p { font-size: 1.2rem; line-height: 1.5; }
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     transform: translateY(-3px);
 }
+
 
 /* --- MOBILE --- */
 @media screen and (max-width:768px) {
