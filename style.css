@@ -108,7 +108,7 @@ body {
 /* --- FACE CONTAINER --- */
 .face-container {
     position: fixed;
-    top: 50%;
+    top: 70%;
     left: 50%;
     /* Perfect Center Alignment */
     transform: translate(-50%, -50%);
@@ -117,14 +117,14 @@ body {
     /* Defined size for accurate calculations */
     width: 310px; 
     height: 310px;
-}
+} 
 
 #face-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     /* margin-top: 35px; */
-    margin-top: 120px;
+    /* margin-top: 120px; */
     transform: scale(1); 
     transition: opacity 0.5s ease, transform 0.5s ease, content 0.3s;
 }
@@ -251,6 +251,41 @@ p { font-size: 1.2rem; line-height: 1.5; }
 .faq.active .faq-content {
     max-height: 300px;
     padding-bottom: 20px;
+}
+
+
+/* --- DOWNLOAD BUTTON --- */
+.download-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't break the width */
+    margin-top: 40px;      /* The "space" you requested */
+    padding: 25px;
+    
+    /* Style matching the FAQs */
+    background: #1c1c1c;
+    border: 1px solid #ffffff55;
+    color: white;
+    
+    /* Text Styling */
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Interactive feel */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background: white;
+    color: #0c1f3d; /* Dark blue text on hover */
+    border-color: white;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
 }
 
 /* --- MOBILE --- */
